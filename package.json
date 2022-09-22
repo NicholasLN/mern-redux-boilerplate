@@ -1,0 +1,48 @@
+{
+  "name": "simple-mern-boilerplate",
+  "version": "1.0.0",
+  "description": "Just a simple MERN boilerplate for my own personal usage.",
+  "main": "index.js",
+  "scripts": {
+    "build": "webpack --mode production",
+    "start": "npm run build && node src/server/index.js",
+    "client": "webpack serve --mode development --devtool inline-source-map --hot",
+    "server": "nodemon src/server/index.js",
+    "dev": "concurrently \"npm run server\" \"npm run client\""
+  },
+  "author": "Nicholas Lunna",
+  "license": "ISC",
+  "dependencies": {
+    "@babel/preset-env": "^7.19.1",
+    "@babel/preset-react": "^7.18.6",
+    "@reduxjs/toolkit": "^1.8.5",
+    "axios": "^0.27.2",
+    "babel-loader": "^8.2.5",
+    "babel-polyfill": "^6.26.0",
+    "bcrypt": "^5.0.1",
+    "body-parser": "^1.20.0",
+    "chalk": "4.0",
+    "clean-webpack-plugin": "^4.0.0",
+    "compression-webpack-plugin": "^10.0.0",
+    "concurrently": "^7.4.0",
+    "cors": "^2.8.5",
+    "dotenv": "^16.0.2",
+    "express": "^4.18.1",
+    "html-webpack-plugin": "^5.5.0",
+    "jsonwebtoken": "^8.5.1",
+    "mini-css-extract-plugin": "^2.6.1",
+    "mongoose": "^6.6.1",
+    "node-polyfill-webpack-plugin": "^2.0.1",
+    "nodemon": "^2.0.20",
+    "react": "^18.2.0",
+    "react-cookie": "^4.1.1",
+    "react-dom": "^18.2.0",
+    "react-redux": "^8.0.2",
+    "react-router-dom": "^6.4.1",
+    "webpack": "^5.74.0"
+  },
+  "devDependencies": {
+    "webpack-cli": "^4.10.0",
+    "webpack-dev-server": "^4.11.1"
+  }
+}
