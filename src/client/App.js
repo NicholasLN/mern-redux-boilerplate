@@ -49,9 +49,9 @@ export default function App() {
     // const i = setInterval(() => {
     //   checkCookie();
     // }, 5000);
-    return () => {
-      clearInterval(i);
-    };
+    // return () => {
+    //   clearInterval(i);
+    // };
   }, [cookie.access_token]);
 
   if (!loading) {
