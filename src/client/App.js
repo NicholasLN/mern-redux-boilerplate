@@ -46,9 +46,9 @@ export default function App() {
     fetchProfile();
 
     // Periodicaclly run this function to make sure that the cookie has not been modified.
-    const i = setInterval(() => {
-      checkCookie();
-    }, 5000);
+    // const i = setInterval(() => {
+    //   checkCookie();
+    // }, 5000);
     return () => {
       clearInterval(i);
     };

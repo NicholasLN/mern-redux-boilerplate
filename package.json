@@ -1,7 +1,7 @@
 {
-  "name": "simple-mern-boilerplate",
+  "name": "mern-redux-boilerplate",
   "version": "1.0.0",
-  "description": "Just a simple MERN boilerplate for my own personal usage.",
+  "description": "Just a simple MERN boilerplate with redux for my own personal usage (and yours if you want :O)",
   "main": "index.js",
   "scripts": {
     "build": "webpack --mode production",
