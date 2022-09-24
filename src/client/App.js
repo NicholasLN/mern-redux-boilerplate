@@ -13,19 +13,6 @@ export default function App() {
   const userState = useSelector((state) => state.auth);
   const dispatch = useDispatch();
 
-  var checkCookie = (function () {
-    var lastCookie = document.cookie;
-    return function () {
-      var currentCookie = document.cookie;
-      if (currentCookie != lastCookie) {
-        // something useful like parse cookie, run a callback fn, etc.
-        removeCookie("access_token");
-        dispatch(logout());
-        lastCookie = currentCookie; // store latest cookie
-      }
-    };
-  })();
-
   // useEffect to restore login state
   useEffect(() => {
     async function fetchProfile() {
@@ -44,19 +31,23 @@ export default function App() {
       setLoading(false);
     }
     fetchProfile();
-
-    // Periodicaclly run this function to make sure that the cookie has not been modified.
-    // const i = setInterval(() => {
-    //   checkCookie();
-    // }, 5000);
-    // return () => {
-    //   clearInterval(i);
-    // };
   }, [cookie.access_token]);
 
   if (!loading) {
     return (
       <>
+        {userState.loggedIn && (
+          <>
+            <button
+              onClick={() => {
+                removeCookie("access_token");
+                dispatch(logout());
+              }}
+            >
+              Logout
+            </button>
+          </>
+        )}
         <RouterProvider router={router} fallbackElement={<h1>Loading</h1>} />
       </>
     );

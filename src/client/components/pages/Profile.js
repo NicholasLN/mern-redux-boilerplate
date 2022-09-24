@@ -7,7 +7,6 @@ export default function Profile() {
   const userState = useSelector((state) => state.auth);
   const navigate = useNavigate();
   useEffect(() => {
-    console.log(userState);
     if (userState.loggedIn) {
       setUser(userState.user);
     } else {

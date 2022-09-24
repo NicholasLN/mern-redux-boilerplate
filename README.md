@@ -14,7 +14,6 @@ Passwords are hashed with bcrypt.
 - Authentication and Authentication Strategies (logged in, is admin)
 - MongoDB Connection
 - Redux State Management (also restores state after refresh!)
-- Cookie modification check
 
 ## Environment Variables
 
