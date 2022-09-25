@@ -52,7 +52,9 @@ export default function Login() {
         }}
       />
       <br />
-      <button onClick={loginSubmit}>login</button>
+      <button className="text-blue-400" onClick={loginSubmit}>
+        login
+      </button>
     </Body>
   );
 }

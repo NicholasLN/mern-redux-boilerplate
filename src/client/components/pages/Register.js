@@ -64,7 +64,9 @@ export default function Register() {
         }}
       />
       <br />
-      <button onClick={registerSubmit}>register</button>
+      <button className="text-blue-400" onClick={registerSubmit}>
+        register
+      </button>
     </Body>
   );
 }
