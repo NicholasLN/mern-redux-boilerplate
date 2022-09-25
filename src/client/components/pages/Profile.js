@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux/es/exports";
 import { useNavigate } from "react-router";
+import Body from "../struct/Body";
 
 export default function Profile() {
   const [user, setUser] = useState({});
@@ -15,8 +16,8 @@ export default function Profile() {
   });
 
   return (
-    <>
+    <Body>
       <p>{JSON.stringify(user)}</p>
-    </>
+    </Body>
   );
 }
