@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from "react";
-import { useCookies } from "react-cookie";
+import { Cookies, useCookies } from "react-cookie";
 import { RouterProvider } from "react-router-dom";
 import router from "./router";
 import getPage from "./utils/getPage";
 import { useSelector, useDispatch } from "react-redux/es/exports";
-import { login, logout } from "./redux/reducers/authSlice";
+import { login, logout, updateState } from "./redux/reducers/authSlice";
 
 export default function App() {
   const [cookie, setCookie, removeCookie] = useCookies(["access_token"]);
@@ -12,6 +12,19 @@ export default function App() {
 
   const userState = useSelector((state) => state.auth);
   const dispatch = useDispatch();
+
+  var checkCookie = (function () {
+    var lastCookie = document.cookie; // 'static' memory between function calls
+    return function () {
+      var currentCookie = document.cookie;
+      if (currentCookie != lastCookie) {
+        console.error(`Access token has been modified.`);
+        removeCookie("access_token");
+        dispatch(logout());
+        lastCookie = currentCookie; // store latest cookie
+      }
+    };
+  })();
 
   // useEffect to restore login state
   useEffect(() => {
@@ -22,8 +35,13 @@ export default function App() {
             "/api/v1/user/userInfo/profile",
             cookie.access_token
           );
-          dispatch(login(user.data));
+          if (!userState.loggedIn) {
+            dispatch(login(user.data));
+          } else {
+            dispatch(updateState(user.data));
+          }
         } catch (e) {
+          console.log(e);
           removeCookie("access_token");
           dispatch(logout());
         }
@@ -31,23 +49,18 @@ export default function App() {
       setLoading(false);
     }
     fetchProfile();
+    const i = setInterval(() => {
+      checkCookie();
+      fetchProfile();
+    }, 10000);
+    return () => {
+      clearInterval(i);
+    };
   }, [cookie.access_token]);
 
   if (!loading) {
     return (
       <>
-        {userState.loggedIn && (
-          <>
-            <button
-              onClick={() => {
-                removeCookie("access_token");
-                dispatch(logout());
-              }}
-            >
-              Logout
-            </button>
-          </>
-        )}
         <RouterProvider router={router} fallbackElement={<h1>Loading</h1>} />
       </>
     );
