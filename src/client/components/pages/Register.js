@@ -4,6 +4,7 @@ import { useCookies } from "react-cookie";
 import { useNavigate } from "react-router";
 import postPage from "../../utils/postPage";
 import { login } from "../../redux/reducers/authSlice";
+import Body from "../struct/Body";
 
 export default function Register() {
   const userState = useSelector((state) => state.auth);
@@ -37,7 +38,7 @@ export default function Register() {
     }
   };
   return (
-    <>
+    <Body>
       <p>username</p>
       <input
         id="username"
@@ -63,7 +64,9 @@ export default function Register() {
         }}
       />
       <br />
-      <button onClick={registerSubmit}>register</button>
-    </>
+      <button className="text-blue-400" onClick={registerSubmit}>
+        register
+      </button>
+    </Body>
   );
 }

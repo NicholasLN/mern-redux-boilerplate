@@ -4,6 +4,7 @@ import { useCookies } from "react-cookie";
 import { useNavigate } from "react-router";
 import postPage from "../../utils/postPage";
 import { login } from "../../redux/reducers/authSlice";
+import Body from "../struct/Body";
 
 export default function Login() {
   const userState = useSelector((state) => state.auth);
@@ -34,7 +35,7 @@ export default function Login() {
     }
   };
   return (
-    <>
+    <Body>
       <p>username</p>
       <input
         id="username"
@@ -51,7 +52,9 @@ export default function Login() {
         }}
       />
       <br />
-      <button onClick={loginSubmit}>login</button>
-    </>
+      <button className="text-blue-400" onClick={loginSubmit}>
+        login
+      </button>
+    </Body>
   );
 }
