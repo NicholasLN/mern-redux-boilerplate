@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { useCookies } from "react-cookie";
+import { Cookies, useCookies } from "react-cookie";
 import { RouterProvider } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux/es/exports";
 import { login, logout, updateState } from "./redux/reducers/authSlice";
@@ -51,9 +51,24 @@ export default function App() {
             removeCookie("access_token");
             dispatch(logout());
           }
+          try {
+            var user = await getPage(
+              "/api/v1/user/userInfo/profile",
+              cookie.access_token
+            );
+            if (!userState.loggedIn) {
+              dispatch(login(user.data));
+            } else {
+              dispatch(updateState(user.data));
+            }
+          } catch (e) {
+            console.log(e);
+            removeCookie("access_token");
+            dispatch(logout());
+          }
         }
+        setLoading(false);
       }
-      setLoading(false);
     }
     fetchProfile();
 
@@ -66,8 +81,6 @@ export default function App() {
     return () => {
       clearInterval(i);
     };
-    // Refresh state upon window being refocused.
-    // This will update the user data every time they revisit the site and prevent them from having to do a refresh.
   }, [isFocused]);
 
   if (!loading) {
