@@ -92,7 +92,7 @@ export default function App() {
   } else {
     return (
       <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-center">
-        <h1 className="text-2xl">AUTHORITY do be loading tho..</h1>
+        <h1 className="text-2xl">[your site...] do be loading tho..</h1>
         <BeatLoader size={10} />
       </div>
     );
