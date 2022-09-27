@@ -22,7 +22,7 @@ export default function Register() {
   }, []);
   const registerSubmit = async () => {
     // TODO: user input verification
-    var res = await postPage("/api/v1/user/userActions/register", {
+    var res = await postPage("/api/v1/user/register", {
       username,
       password,
       email,

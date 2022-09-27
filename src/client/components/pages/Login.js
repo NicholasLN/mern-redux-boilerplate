@@ -20,7 +20,7 @@ export default function Login() {
     }
   }, []);
   const loginSubmit = async () => {
-    var res = await postPage("/api/v1/user/userActions/login", {
+    var res = await postPage("/api/v1/user/login", {
       username,
       password,
       rememberMe: false,

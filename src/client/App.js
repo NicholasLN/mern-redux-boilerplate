@@ -39,7 +39,7 @@ export default function App() {
         if (isFocused) {
           try {
             var user = await getPage(
-              "/api/v1/user/userInfo/profile",
+              "/api/v1/user/profile",
               cookie.access_token
             );
             if (!userState.loggedIn) {
@@ -53,12 +53,13 @@ export default function App() {
           }
           try {
             var user = await getPage(
-              "/api/v1/user/userInfo/profile",
+              "/api/v1/user/profile",
               cookie.access_token
             );
             if (!userState.loggedIn) {
               dispatch(login(user.data));
             } else {
+              console.log(user);
               dispatch(updateState(user.data));
             }
           } catch (e) {
@@ -67,8 +68,8 @@ export default function App() {
             dispatch(logout());
           }
         }
-        setLoading(false);
       }
+      setLoading(false);
     }
     fetchProfile();
 
