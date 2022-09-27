@@ -37,8 +37,8 @@ app.use(require("./jwtVerificationMiddleware"));
 
 // Routes
 // User Actions (login, logout, etc)
-app.use("/api/v1/user/userActions", require("./routes/user/useractions"));
-app.use("/api/v1/user/userInfo", require("./routes/user/userinfo"));
+app.use("/api/v1/user", require("./routes/user/useractions"));
+app.use("/api/v1/user", require("./routes/user/userinfo"));
 
 app.use(express.static(`${process.env.BUILD_OUTPUT}`));
 if (process.env.NODE_ENV.toUpperCase() == "PRODUCTION") {
