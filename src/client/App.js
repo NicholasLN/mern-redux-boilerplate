@@ -59,7 +59,6 @@ export default function App() {
             if (!userState.loggedIn) {
               dispatch(login(user.data));
             } else {
-              console.log(user);
               dispatch(updateState(user.data));
             }
           } catch (e) {
